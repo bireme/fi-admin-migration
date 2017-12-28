@@ -1,0 +1,8 @@
+m|m
+mc|mc
+ms|ms
+am|am
+amc|amc
+ams|ams
+as|as
+c|c

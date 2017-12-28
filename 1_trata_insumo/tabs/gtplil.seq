@@ -1,0 +1,195 @@
+CASE REPORTS|Case Reports
+RESEARCH SUPPORT, NON-U.S. GOV'T|Research Support, Non-U.S. Gov't
+RESEARCH SUPPORT, U.S. GOV'T, NON-P.H.S.|Research Support, U.S. Gov't, Non-P.H.S.
+RESEARCH SUPPORT, U.S. GOV'T, P.H.S.|Research Support, U.S. Gov't, P.H.S.
+COMPARATIVE STUDY|Comparative Study
+HISTORICAL ARTICLE|Historical Article
+BIBLIOGRAPHY|Bibliography
+CLASSICAL ARTICLE|Classical Article
+CLINICAL CONFERENCE|Clinical Conference
+CLINICAL TRIAL|Clinical Trial
+COMMENT|Comment
+CONSENSUS DEVELOPMENT CONFERENCE|Consensus Development Conference
+CORRECTED AND REPUBLISHED ARTICLE|Corrected and Republished Article
+DICTIONARY|Dictionary
+DIRECTORY|Directory
+DUPLICATE PUBLICATION|Duplicate Publication
+EDITORIAL|Editorial
+FESTSCHRIFT|Festschrift
+LEGAL CASES|Legal Cases
+LETTER|Letter
+MULTICENTER STUDY|Multicenter Study
+OVERALL|Overall
+PUBLISHED ERRATUM|Published Erratum
+RANDOMIZED CONTROLLED TRIAL|Randomized Controlled Trial
+RETRACTED PUBLICATION|Retracted Publication
+RETRACTION OF PUBLICATION|Retraction of Publication
+TECHNICAL REPORT|Technical Report
+SCIENTIFIC INTEGRITY REVIEW|Scientific Integrity Review
+PRACTICE GUIDELINE|Practice Guideline
+CLINICAL TRIAL, PHASE I|Clinical Trial, Phase I
+CLINICAL TRIAL, PHASE II|Clinical Trial, Phase II
+CLINICAL TRIAL, PHASE III|Clinical Trial, Phase III
+CLINICAL TRIAL, PHASE IV|Clinical Trial, Phase IV
+INTERVIEW|Interview
+META-ANALYSIS|Meta-Analysis
+CONTROLLED CLINICAL TRIAL|Controlled Clinical Trial
+TWIN STUDY|Twin Study
+BIOGRAPHY|Biography
+ADDRESSES|Addresses
+ANNUAL REPORTS|Annual Reports
+LECTURES|Lectures
+BIOBIBLIOGRAPHY|Biobibliography
+HANDBOOKS|Handbooks
+LABORATORY MANUALS|Laboratory Manuals
+EVALUATION STUDIES|Evaluation Studies
+GOVERNMENT PUBLICATIONS|Government Publications
+TEXTBOOKS|Textbooks
+VALIDATION STUDIES|Validation Studies
+RESEARCH SUPPORT, N.I.H., INTRAMURAL|Research Support, N.I.H., Intramural
+RESEARCH SUPPORT, N.I.H., EXTRAMURAL|Research Support, N.I.H., Extramural
+INTRODUCTORY JOURNAL ARTICLE|Introductory Journal Article
+INTERACTIVE TUTORIAL|Interactive Tutorial
+WEBCASTS|Webcasts
+PERSONAL NARRATIVES|Personal Narratives
+CLINICAL STUDY|Clinical Study
+INFORMES DE CASOS|Case Reports
+ESTUDIO COMPARATIVO|Comparative Study
+ARTICULO HISTORICO|Historical Article
+BIBLIOGRAFIA|Bibliography
+ARTICULO CLASICO|Classical Article
+CONFERENCIA CLINICA|Clinical Conference
+ENSAYO CLINICO|Clinical Trial
+COMENTARIO|Comment
+CONFERENCIA DE CONSENSO|Consensus Development Conference
+ARTICULO CORREGIDO Y REPUBLICADO|Corrected and Republished Article
+DICCIONARIO|Dictionary
+DIRECTORIO|Directory
+PUBLICACION DUPLICADA|Duplicate Publication
+EDITORIAL|Editorial
+PUBLICACION CONMEMORATIVA|Festschrift
+CASOS LEGALES|Legal Cases
+CARTAS|Letter
+CARTA|Letter
+ESTUDIO MULTICENTRICO|Multicenter Study
+OVERALL|Overall
+ERRATA|Published Erratum
+ENSAYO CLINICO CONTROLADO ALEATORIO|Randomized Controlled Trial
+PUBLICACION RETRACTADA|Retracted Publication
+RETRACTACION DE PUBLICACION|Retraction of Publication
+INFORME TECNICO|Technical Report
+REVISION DE INTEGRIDAD CIENTIFICA|Scientific Integrity Review
+GUIA DE PRACTICA CLINICA|Practice Guideline
+ENSAYO CLINICO FASE I|Clinical Trial, Phase I
+ENSAYO CLINICO FASE II|Clinical Trial, Phase II
+ENSAYO CLINICO FASE III|Clinical Trial, Phase III
+ENSAYO CLINICO FASE IV|Clinical Trial, Phase IV
+ENTREVISTA|Interview
+METANALISIS|Meta-Analysis
+ENSAYO CLINICO CONTROLADO|Controlled Clinical Trial
+ESTUDIO EN GEMELOS|Twin Study
+BIOGRAFIA|Biography
+DISCURSOS|Addresses
+INFORMES ANUALES|Annual Reports
+CLASES|Lectures
+BIOBIBLIOGRAFIA|Biobibliography
+MANUALES|Handbooks
+MANUALES DE LABORATORIO|Laboratory Manuals
+ESTUDIOS DE EVALUACION|Evaluation Studies
+PUBLICACIONES GUBERNAMENTALES|Government Publications
+LIBROS DE TEXTO|Textbooks
+ESTUDIOS DE VALIDACION|Validation Studies
+ARTICULO INTRODUCTORIO DE REVISTA|Introductory Journal Article
+TUTORIAL INTERACTIVO|Interactive Tutorial
+DIFUSION POR LA WEB|Webcasts
+NARRATIVAS PERSONALES|Personal Narratives
+ESTUDIO CLINICO|Clinical Study
+RELATOS DE CASOS|Case Reports
+ESTUDO COMPARATIVO|Comparative Study
+ARTIGO HISTORICO|Historical Article
+BIBLIOGRAFIA|Bibliography
+ARTIGO CLASSICO|Classical Article
+CONFERENCIA CLINICA|Clinical Conference
+ENSAIO CLINICO|Clinical Trial
+COMENTARIO|Comment
+CONFERENCIA DE CONSENSO|Consensus Development Conference
+ARTIGO CORRIGIDO E REPUBLICADO|Corrected and Republished Article
+DICIONARIO|Dictionary
+DIRETORIO|Directory
+PUBLICACAO DUPLICADA|Duplicate Publication
+EDITORIAL|Editorial
+PUBLICACAO COMEMORATIVA|Festschrift
+CASOS JULGADOS|Legal Cases
+CARTA|Letter
+ESTUDO MULTICENTRICO|Multicenter Study
+OVERALL|Overall
+ERRATA|Published Erratum
+ENSAIO CLINICO CONTROLADO ALEATORIO|Randomized Controlled Trial
+PUBLICACAO RETRATADA|Retracted Publication
+RETRATACAO DE PUBLICACAO|Retraction of Publication
+RELATORIO TECNICO|Technical Report
+REVISAO DE INTEGRIDADE CIENTIFICA|Scientific Integrity Review
+GUIA DE PRATICA CLINICA|Practice Guideline
+ENSAIO CLINICO FASE I|Clinical Trial, Phase I
+ENSAIO CLINICO FASE II|Clinical Trial, Phase II
+ENSAIO CLINICO FASE III|Clinical Trial, Phase III
+ENSAIO CLINICO FASE IV|Clinical Trial, Phase IV
+ENTREVISTA|Interview
+METANALISE|Meta-Analysis
+ENSAIO CLINICO CONTROLADO|Controlled Clinical Trial
+ESTUDO EM GEMEOS|Twin Study
+BIOGRAFIA|Biography
+DISCURSOS|Addresses
+RELATORIOS ANUAIS|Annual Reports
+AULAS|Lectures
+BIOBIBLIOGRAFIA|Biobibliography
+MANUAIS|Handbooks
+MANUAIS DE LABORATORIO|Laboratory Manuals
+ESTUDOS DE AVALIACAO|Evaluation Studies
+PUBLICACOES GOVERNAMENTAIS|Government Publications
+LIVROS DE TEXTO|Textbooks
+ESTUDOS DE VALIDACAO|Validation Studies
+ARTIGO INTRODUTORIO|Introductory Journal Article
+TUTORIAL INTERATIVO|Interactive Tutorial
+WEBCASTS|Webcasts
+NARRATIVAS PESSOAIS|Personal Narratives
+ESTUDO CLINICO|Clinical Study
+LITERATURA DE REVISAO|Review
+LITERATURA DE REVISION|Review
+REVISAO ACADEMICA|Review
+REVISAO DE CASOS RELATADOS|Review
+REVISAO DE MULTIPLOS CASOS|Review
+REVISAO INTEGRATIVA|Review
+REVISAO SISTEMATICA|Review
+REVISAO TUTORIAL|Review
+REVISION ACADEMICA|Review
+REVISION DE CASOS RELATADOS|Review
+REVISION MULTICASUAL|Review
+REVISION TUTORIAL|Review
+REVIEW, TUTORIAL|Review
+REVIEW, ACADEMIC|Review
+REVIEW OF REPORTED CASES|Review
+REVIEW, MULTICASE|Review
+REVIEW LITERATURE|Review
+REVIEW|Review
+REVISAO|Review
+REVISION|Review
+RELATO DE CASO|Case Reports
+METAANALISIS|Meta-Analysis
+ERRATUM|Published Erratum
+GUIA DE PRACTICA MEDICA|Practice Guideline
+GUIA DE PRATICA MEDICA|Practice Guideline
+GUIDELINE|Guideline
+GUIA|Guideline
+ENSAYO CONTROLADO ALEATORIO|Randomized Controlled Trial 
+REUNION DE CONSENSO|Consensus Development Conference
+ENSAIO CONTROLADO ALEATORIO|Randomized Controlled Trial 
+REUNIAO DE CONSENSO|Consensus Development Conference
+RELATO DE EXPERIENCIA|Case Reports
+INFORME DE CASO|Case Reports
+ESTUDO EM GEMEO|Twin Study
+CASE REPORT|Case Reports
+ESTUDIOS DE CASOS|Case Reports
+ARTIGO DE REVISAO|Review
+ [TIPO DE PUBLICACAO]|
+INFORME TCNICO|Technical Report

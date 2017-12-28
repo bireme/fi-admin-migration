@@ -1,0 +1,157 @@
+Case Reports|Informes de Casos|Relatos de Casos|LILACS
+English Abstract|Resumen en Inglés|Resumo em Inglês
+Research Support, Non-U.S. Gov't|Research Support, Non-U.S. Gov't|Research Support, Non-U.S. Gov't|LILACS
+Research Support, U.S. Gov't, Non-P.H.S.|Research Support, U.S. Gov't, Non-P.H.S.|Research Support, U.S. Gov't, Non-P.H.S.|LILACS
+Research Support, U.S. Gov't, P.H.S.|Research Support, U.S. Gov't, P.H.S.|Research Support, U.S. Gov't, P.H.S.|LILACS
+Comparative Study|Estudio Comparativo|Estudo Comparativo|LILACS
+Review|Revisión|Revisão|LILACS
+Historical Article|Artículo Histórico|Artigo Histórico|LILACS
+Bibliography|Bibliografía|Bibliografia|LILACS
+Abstracts|Resúmenes|Resumos
+Classical Article|Artículo Clásico|Artigo Clássico|LILACS
+Clinical Conference|Conferencia Clínica|Conferência Clínica|LILACS
+Clinical Trial|Ensayo Clínico|Ensaio Clínico|LILACS
+Comment|Comentario|Comentário|LILACS
+Consensus Development Conference|Conferencia de Consenso|Conferência de Consenso|LILACS
+Consensus Development Conference, NIH|Consensus Development Conference, NIH|Consensus Development Conference, NIH
+Corrected and Republished Article|Artículo Corregido y Republicado|Artigo Corrigido e Republicado|LILACS
+Dictionary|Diccionario|Dicionário|LILACS
+Directory|Directorio|Diretório|LILACS
+Duplicate Publication|Publicación Duplicada|Publicação Duplicada|LILACS
+Editorial|Editorial|Editorial|LILACS
+Festschrift|Publicación Conmemorativa|Publicação Comemorativa|LILACS
+Journal Article|Artículo de Revista|Artigo de Revista
+Guideline|Guía|Guia|LILACS
+Legal Cases|Casos Legales|Casos Julgados|LILACS
+Letter|Carta|Carta|LILACS
+Congresses|Congresos|Congressos
+Multicenter Study|Estudio Multicéntrico|Estudo Multicêntrico|LILACS
+Monograph|Monografía|Monografia
+News|Noticias|Notícias
+Overall|Overall|Overall|LILACS
+Periodical Index|Índice de Publicaciones Periódicas|Índice de Periódicos
+Published Erratum|Errata|Errata|LILACS
+Randomized Controlled Trial|Ensayo Clínico Controlado Aleatorio|Ensaio Clínico Controlado Aleatório|LILACS
+Retracted Publication|Publicación Retractada|Publicação Retratada|LILACS
+Retraction of Publication|Retractación de Publicación|Retratação de Publicação|LILACS
+Technical Report|Informe Técnico|Relatório Técnico|LILACS
+Scientific Integrity Review|Revisión de Integridad Científica|Revisão de Integridade Científica|LILACS
+Practice Guideline|Guía de Práctica Clínica|Guia de Prática Clínica|LILACS
+Clinical Trial, Phase I|Ensayo Clínico Fase I|Ensaio Clínico Fase I|LILACS
+Clinical Trial, Phase II|Ensayo Clínico Fase II|Ensaio Clínico Fase II|LILACS
+Clinical Trial, Phase III|Ensayo Clínico Fase III|Ensaio Clínico Fase III|LILACS
+Clinical Trial, Phase IV|Ensayo Clínico Fase IV|Ensaio Clínico Fase IV|LILACS
+Interview|Entrevista|Entrevista|LILACS
+Meta-Analysis|Metaanálisis|Metanálise|LILACS
+Controlled Clinical Trial|Ensayo Clínico Controlado|Ensaio Clínico Controlado|LILACS
+Newspaper Article|Artículo de Periódico|Artigo de Jornal
+Twin Study|Estudio en Gemelos|Estudo em Gêmeos|LILACS
+Biography|Biografía|Biografia|LILACS
+Academic Dissertations|Tesis Académicas|Dissertações Acadêmicas
+Account Books|Libros de Cuentas|Livros Contábeis
+Addresses|Discursos|Discursos|LILACS
+Advertisements|Anuncios|Anúncios
+Almanacs|Almanaques|Almanaques
+Animation|Animación|Animação
+Annual Reports|Informes Anuales|Relatórios Anuais|LILACS
+Architectural Drawings|Diseños Arquitectónicos|Desenhos Arquitetônicos
+Book Illustrations|Ilustraciones de Libros|Ilustrações de Livros
+Bookplates|Ex Libris|Ex Libris
+Broadsides|Impresos Sueltos|Impressos Avulsos
+Caricatures|Caricaturas|Caricaturas
+Cartoons|Dibujos Animados|Desenhos Animados
+Catalogs|Catálogos|Catálogos
+Diaries|Diarios|Diários
+Documentaries and Factual Films|Documentarios Cinematográficos|Documentários Cinematográficos
+Encyclopedias|Enciclopedias|Enciclopédias
+Ephemera|Efemérides|Efemérides
+Eulogies|Elogios|Elogios
+Funeral Sermons|Responsos Fúnebres|Orações Fúnebres
+Guidebooks|Guías de Viaje|Guias de Viagem
+Herbals|Herbarios|Herbários
+Instructional Films and Videos|Películas y Videos Educativos|Filmes e Vídeos Educativos
+Lecture Notes|Apuntes de Clase|Anotações de Aula
+Lectures|Clases|Aulas|LILACS
+Maps|Mapas|Mapas
+Pharmacopoeias|Farmacopeas|Farmacopeias
+Portraits|Retratos|Retratos
+Posters|Carteles|Pôsteres
+Price Lists|Listas de Precios|Listas de Preços
+Programs|Programas|Programas
+Prospectuses|Prospectos|Prospectos
+Sermons|Sermones|Sermões
+Unedited Footage|Película no Editada|Copião
+Database|Base de Datos|Base de Dados
+Meeting Abstracts|Resúmenes de Reuniones|Resumos de Reunião
+Abbreviations|Abreviaturas|Abreviaturas
+Anecdotes|Anécdotas|Anedotas
+Atlases|Atlas|Atlas
+Biobibliography|Biobibliografía|Biobibliografia|LILACS
+Charts|Gráficos|Gráficos
+Chronology|Cronología|Cronologia
+Collected Correspondence|Correspondencia Recolectada|Correspondência Coletada
+Collected Works|Obras de Colección|Obras de Coleção
+Collections|Colecciones|Coleções
+Drawings|Dibujos|Desenhos
+Essays|Ensayos|Ensaios
+Examination Questions|Preguntas de Exámenes|Questões de Exames
+Exhibitions|Exposiciones|Exposições
+Forms|Formularios|Formulários
+Handbooks|Manuales|Manuais|LILACS
+Humor|Humorismo|Humorismo
+Indexes|Índices|Índices
+Juvenile Literature|Literatura Infanto-Juvenil|Literatura Infantojuvenil
+Laboratory Manuals|Manuales de Laboratorio|Manuais de Laboratório|LILACS
+Legislation|Legislación|Legislação
+Manuscripts|Manuscritos|Manuscritos
+Nurses' Instruction|Instrucción para Enfermeras|Instrução para Enfermeiros
+Outlines|Bosquejos|Esboços
+Patents|Patentes|Patentes
+Periodicals|Publicaciones Periódicas|Publicações Periódicas
+Autobiography|Autobiografía|Autobiografia
+Phrases|Frases|Frases
+Pictorial Works|Obras Pictóricas|Obras Pictóricas
+Popular Works|Obras Populares|Obras Populares
+Problems and Exercises|Problemas y Ejercicios|Problemas e Exercícios
+Programmed Instruction|Instrucción Programada|Instrução Programada
+Resource Guides|Guías de Recursos|Guias Informativos
+Statistics|Estadística|Estatística
+Tables|Tablas|Tabelas
+Terminology|Terminología|Terminologia
+Union Lists|Catálogos Colectivos|Catálogos Coletivos
+Book Reviews|Reseñas de Libros|Resenhas de Livros
+Evaluation Studies|Estudios de Evaluación|Estudos de Avaliação|LILACS
+Fictional Works|Obras de Ficción|Obras de Ficção
+Government Publications|Publicaciones Gubernamentales|Publicações Governamentais|LILACS
+Textbooks|Libros de Texto|Livros de Texto|LILACS
+Unpublished Works|Obras no Publicadas|Obras não Publicadas
+Validation Studies|Estudios de Validación|Estudos de Validação|LILACS
+Patient Education Handout|Folleto Informativo para Pacientes|Prospecto para Educação de Pacientes
+Research Support, N.I.H., Intramural|Research Support, N.I.H., Intramural|Research Support, N.I.H., Intramural|LILACS
+Research Support, N.I.H., Extramural|Research Support, N.I.H., Extramural|Research Support, N.I.H., Extramural|LILACS
+Publication Components|Componentes de Publicaciones|Componentes de Publicações
+Publication Formats|Formatos de Publicación|Formatos de Publicação
+Study Characteristics|Características de los Estudios|Características dos Estudos
+Support of Research|Fuentes de Financiación de Investigación|Fontes de Financiamento de Pesquisa
+Aphorisms and Proverbs|Aforismos y Proverbios|Aforismos e Provérbios
+Introductory Journal Article|Artículo Introductorio de Revista|Artigo Introdutório|LILACS
+Interactive Tutorial|Tutorial Interactivo|Tutorial Interativo|LILACS
+Cookbooks|Libros de Cocina|Livros de Culinária
+Formularies|Formularios Farmacéuticos|Formulários Farmacêuticos
+Poetry|Poesía|Poesia
+Incunabula|Incunables|Incunábulos
+Postcards|Postales|Cartões Postais
+Webcasts|Difusión por la Web|Webcasts|LILACS
+Research Support, American Recovery and Reinvestment Act|Research Support, American Recovery and Reinvestment Act|Research Support, American Recovery and Reinvestment Act
+Electronic Supplementary Materials|Materiales Complementarios Electrónicos|Materiais Suplementares Eletrônicos
+Video-Audio Media|Medios Audiovisuales|Mídia Audiovisual
+Photographs|Fotografías|Fotografias
+Research Support, U.S. Government|Research Support, U.S. Government|Research Support, U.S. Government
+Personal Narratives|Narrativas Personales|Narrativas Pessoais|LILACS
+Pragmatic Clinical Trial|Ensayo Clínico Pragmático|Ensaio Clínico Pragmático|LILACS
+Blogs|Blogs|Blogs
+Graphic Novels|Novelas Gráficas|Histórias em Quadrinhos
+Public Service Announcements|Anuncios de Utilidad Pública|Anúncios de Utilidade Pública
+Clinical Study|Estudio Clínico|Estudo Clínico|LILACS
+Calendars|Calendarios|Calendários
+Study Guide|Guía de Estudio|Guia de Estudo|LILACS

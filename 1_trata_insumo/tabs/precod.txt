@@ -1,0 +1,33 @@
+Adolescent|Adolescente|Adolescente
+Adult|Adulto|Adulto
+Aged, 80 and over|Anciano de 80 o más Años|Idoso de 80 Anos ou mais
+Aged|Anciano|Idoso
+Animals|Animales|Animais
+Cats|Gatos|Gatos
+Cattle|Bovinos|Bovinos
+Chick Embryo|Embrión de Pollo|Embrião de Galinha
+Child|Niño|Criança
+Child, Preschool|Preescolar|Pré-Escolar
+Cricetinae|Cricetinae|Cricetinae
+Dogs|Perros|Cães
+Female|Femenino|Feminino
+Guinea Pigs|Cobayas|Cobaias
+History, 15th Century|Historia del Siglo XV|História do Século XV
+History, 16th Century|Historia del Siglo XVI|História do Século XVI
+History, 17th Century|Historia del Siglo XVII|História do Século XVII
+History, 18th Century|Historia del Siglo XVIII|História do Século XVIII
+History, 19th Century|Historia del Siglo XIX|História do Século XIX
+History, 20th Century|Historia del Siglo XX|História do Século XX
+History, 21st Century|Historia del Siglo XXI|História do Século XXI
+History, Ancient|Historia Antigua|História Antiga
+History, Medieval|Historia Medieval|História Medieval
+Humans|Humanos|Humanos
+Infant|Lactante|Lactente
+Infant, Newborn|Recién Nacido|Recém-Nascido
+Male|Masculino|Masculino
+Mice|Ratones|Camundongos
+Middle Aged|Mediana Edad|Meia-Idade
+Pregnancy|Embarazo|Gravidez
+Rabbits|Conejos|Coelhos
+Rats|Ratas|Ratos
+Young Adult|Adulto Joven|Adulto Jovem
