@@ -76,11 +76,15 @@ echo "teste = $i"
 
 [ -s cpo012.mst ] && echo "Join cpo012 [12] file_in=$i file_out=$j" && $DIRISIS/mx wrk$i "join=cpo012,912=v2/" "proc='d32001'" create=wrk$j -all now && i=$(($i+1)) && j=$(($j+1))
 
+[ -s cpo013.mst ] && echo "Join cpo013 [13] file_in=$i file_out=$j" && $DIRISIS/mx wrk$i "join=cpo013,913=v2/" "proc='d32001'" create=wrk$j -all now && i=$(($i+1)) && j=$(($j+1))
+
 [ -s cpo014.mst ] && echo "Join cpo014 [14] file_in=$i file_out=$j" && $DIRISIS/mx wrk$i "join=cpo014,914=v2/" "proc='d32001'" create=wrk$j -all now && i=$(($i+1)) && j=$(($j+1))
 
 [ -s cpo016.mst ] && echo "Join cpo016 [16] file_in=$i file_out=$j" && $DIRISIS/mx wrk$i "join=cpo016,916=v2/" "proc='d32001'" create=wrk$j -all now && i=$(($i+1)) && j=$(($j+1))
 
 [ -s cpo018.mst ] && echo "Join cpo018 [18] file_in=$i file_out=$j" && $DIRISIS/mx wrk$i "join=cpo018,918=v2/" "proc='d32001'" create=wrk$j -all now && i=$(($i+1)) && j=$(($j+1))
+
+[ -s cpo019.mst ] && echo "Join cpo019 [19] file_in=$i file_out=$j" && $DIRISIS/mx wrk$i "join=cpo019,919=v2/" "proc='d32001'" create=wrk$j -all now && i=$(($i+1)) && j=$(($j+1))
 
 [ -s cpo023.mst ] && echo "Join cpo023 [23] file_in=$i file_out=$j" && $DIRISIS/mx wrk$i "join=cpo023,923=v2/" "proc='d32001'" create=wrk$j -all now && i=$(($i+1)) && j=$(($j+1))
 

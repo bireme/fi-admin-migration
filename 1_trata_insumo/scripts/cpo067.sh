@@ -72,7 +72,7 @@ $DIRISIS/mx seq=$DIRTAB/gpais57.seq gizmo=gutf8ans create=gpais57 -all now tell=
 $DIRISIS/mx $2 "gizmo=gpais57,67" create=$3_1 -all now
 
 echo "Somente para BBO"
-$DIRISIS/mx $3_1 "proc=if v66='Bauru' and v67='Caribe' then 'd67','<67>BR</67>' else if  v66='New Delhi' then 'd67','<67>IN</67>' fi,fi" create=$3_2 -all now
+$DIRISIS/mx $3_1 "proc=if (v66='Bauru' or v66:'Bel' or v66:'Bras') and v67='Caribe' then 'd67','<67>BR</67>' else if  v66='New Delhi' then 'd67','<67>IN</67>' else  if  v67:'----' or v67='BR1599.1' then 'd67' fi,fi,fi" create=$3_2 -all now
 
 echo "Cria Relatorios"
 $DIRISIS/mx $3_2 "pft=if p(v67) and nocc(v67)>2 then v2'|CPO067|'v67'|CPO066|'v66/ fi" -all now lw=0 >$DIROUTS/$1/Rel_$3.txt

@@ -64,9 +64,12 @@ echo "--------------------------------------------------------------------------
 echo "Descricao"
 
 echo "038 Informação Descritiva"
-$DIRISIS/mx $2 "proc=if p(v38) then 'Gsplit=38=^' fi" "proc=if p(v38) then 'Gsplit=38=,' fi" "proc=if p(v38) then 'Gsplit=38=/' fi" "proc=if p(v38) then 'Gsplit=38=&' fi" create=$3_1 -all now
+#"proc=if p(v38) then 'Gsplit=38=/' fi"
+#"proc=if p(v38) then 'Gsplit=38=&' fi"
+#"proc=if p(v38) then 'Gsplit=38=,' fi"
+$DIRISIS/mx $2 "proc=if p(v38) then 'Gsplit=38=^' fi" create=$3_1 -all now
 
-$DIRISIS/mx $3_1 "proc='d38',(if s(mpu,v38,mpl):'ILU' or s(mpu,v38,mpl):'FIG' then '<38>^bilus</38>' else if s(mpu,v38,mpl):'MAP' then '<38>^bmap</38>' else if s(mpu,v38,mpl):'TAB' then '<38>^btab</38>' else if s(mpu,v38,mpl):'GRA' then '<38>^bgraf</38>' else if p(v38) then '<38>'v38'</38>' fi,fi,fi,fi,fi)" create=$3_2 -all now
+$DIRISIS/mx $3_1 actab=$DIRTAB/ansiac.tab uctab=$DIRTAB/ansiuc.tab "proc='d38',(if s(mpu,v38,mpl):'ILU' or s(mpu,v38,mpl):'FIG' then '<38>^bilus</38>' else if s(mpu,v38,mpl):'MAP' then '<38>^bmap</38>' else if s(mpu,v38,mpl):'TAB' then '<38>^btab</38>' else if s(mpu,v38,mpl):'GRA' then '<38>^bgraf</38>' else if p(v38) then '<38>'v38'</38>' fi,fi,fi,fi,fi)" create=$3_2 -all now
 
 echo "038 Informação Descritiva - Gizmo"
 $DIRISIS/mx seq=$DIRTAB/v38_bbo.seq create=v38_bbo -all now
@@ -74,12 +77,18 @@ $DIRISIS/mx seq=$DIRTAB/v38_bbo.seq create=v38_bbo -all now
 echo "Cria master"
 $DIRISIS/mx $3_2 "gizmo=v38_bbo,38" create=$3_3 -all now
 
+echo "Coloca o ^ tirado para quebrar o campo em partes"
+$DIRISIS/mx $3_3 "proc='d38',(if p(v38) then if v38.1='a' or v38.1='b' or v38.1='c' or v38.1='d' or v38.1='e' then '<38>^'v38'</38>' else '<38>'v38'</38>' fi,fi)" create=$3_4 -all now
+
+echo "Trocar o subcampo [d] para o subcampo [e] e coloca Subcampo para quem não tem COLECIONA-SUS"
+$DIRISIS/mx $3_4 "proc='d38',if p(v38) then ('<38>',replace(v38,'^d','^e'),'</38>') fi" "proc='d38',if p(v38) then (if v38.1='^' then '<38>'v38'</38>' else if v38='il' or v38='Foto' then '<38>^bilus</38>' else if v38:'DVD' then '<38>^a'v38'</38>' else '<38>^e'v38'</38>' fi,fi,fi)fi" create=$3_5 -all now
+
 echo "Cria iso"
-$DIRISIS/mx $3_3 "proc='d*',if p(v38) then |<2 0>|v2|</2>|,(|<938>|v38|</938>|) fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000
+$DIRISIS/mx $3_5 "proc='d*',if p(v38) then |<2 0>|v2|</2>|,(|<938>|v38|</938>|) fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000
 echo
 echo "TERMINO DOS AJUSTES ##########################################################################################"
 
-echo "-------------------------------------------------------------------------"o
+echo "-------------------------------------------------------------------------"
 echo
 echo "Fim de processamento"
 echo

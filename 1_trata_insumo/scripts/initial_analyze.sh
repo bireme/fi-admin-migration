@@ -56,6 +56,10 @@ fi
 echo
 echo "INICIO ###########################################################################################"
 echo "--------------------------------------------------------------------------------------------------------------"
+
+echo "  -> Garante diretorio vazio para os relatorio de saida"
+[ ! -d $DIROUTS/${1} ] && mkdir $DIROUTS/${1}
+
 echo "Analise"
 
 echo "Area de trabalho"
@@ -67,10 +71,11 @@ $DIRISIS/mxf0 $2 create=$2_analise
 $DIRISIS/mx $2_analise "pft='File= 'v1001/'Date= 'v1003/'Total= 'v1009/(v1020^t,'|'v1020^d,'|'v1020^l'|',v1020^u,'|'v1020^n/)##" -all now >$DIROUTS/$1/initial_analysis_$1.txt
 
 echo "Campos validos e campos de processamento"
-$DIRISIS/mx $2_analise "pft=(v1020^t/)" -all now lw=0 >fields_teste.txt
-$DIRISIS/mx seq=fields_$1.txt create=fields_$1 -all now
+$DIRISIS/mx $2_analise "pft=(v1020^t/)" -all now lw=0 >fields.txt
+$DIRISIS/mx seq=fields.txt create=fields_$1 -all now
 
-$DIRISIS/mx seq=$DIRTAB/tab_fields.txt create=tab_fields -all now
+echo "Tabela de campos"
+$DIRISIS/mx seq=$DIRTAB/tab_fields.txt create=tab_fields -all now tell=1
 $DIRISIS/mx tab_fields "fst=1 0 v1/" fullinv=tab_fields
 
 $DIRISIS/mx fields_$1 "join=tab_fields,2=v1/" "proc='d32001" create=fields_$1_001 -all now 

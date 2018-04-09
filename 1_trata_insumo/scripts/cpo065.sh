@@ -64,7 +64,7 @@ echo "--------------------------------------------------------------------------
 echo "Descricao"
 
 echo "065 Data de Publicacao Normalizada - Tamanho do campo e ano inferior a 1985 para registros LILACS"
-$DIRISIS/mx $2 "pft=if s(mpu,v950,mpl):'LILACS' then if a(v65) then v2'|65_DP|AUS' else if val(v65.4)<1985 then v2'|65_DP|'v65 fi,if size(v65)<9 then v2'|65_DP|'v65 fi,fi,fi" lw=0 -all now >$DIROUTS/$1/Rel_$3.txt
+$DIRISIS/mx $2 "pft=if s(mpu,v950,mpl):'LILACS' then if a(v65) then v2'|65_DP|AUS'/ else if val(v65.4)<1985 then v2'|65_DP|'v65/ fi,if size(v65)<9 then v2'|65_DP|'v65/ fi,fi,fi" lw=0 -all now >$DIROUTS/$1/Rel_$3.txt
 
 $DIRISIS/mx $2 "proc=if s(mpu,v950,mpl):'LILACS' then if val(v65.4)<1985 then 'd65','<65 0>19850000</65>' fi,fi" create=$3_1 -all now
 

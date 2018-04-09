@@ -68,7 +68,7 @@ $DIRISIS/mx seq=$DIRTAB/gizPaginaSub.seq create=gizPaginaSub -all now
 $DIRISIS/mx $2 gizmo=gizPaginaSub,14 create=$3_1 -all now
 
 echo "Coloca a pagina no subcampo f e l quando nao tem"
-$DIRISIS/mx $3_1 "proc='d14',(if p(v14) then if a(v14^f) and not v14.1='^' then '<14>^f'v14'</14>' else '<14>'v14'</14>' fi,fi)" create=$3_2 -all now
+$DIRISIS/mx $3_1 "proc='d14',(if p(v14) then if a(v14^f) and not v14.1='[' and not v14.1='^' and not v14.1='e' then '<14>^f'v14'</14>' else if v14:'[' then if v14.1='e' then '<14>^'replace(v14,'^l','-')'</14>' else '<14>'replace(v14,'^l','-')'</14>' fi, else if v14.1:'e' then '<14>'replace(v14,'^le','-')'</14>' else '<14>'v14'</14>' fi,fi,fi,fi)" create=$3_2 -all now
 
 $DIRISIS/mx $3_2 "proc='d914',(|<914>|v14|</914>|)" create=$3_3 -all now
 

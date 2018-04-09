@@ -59,10 +59,10 @@ echo "--------------------------------------------------------------------------
 echo "Analise"
 
 echo "Area de trabalho"
-cd $DIRDATA/${1}
+cd $DIRWORK/${1}
 
 echo "Gera o master"
-$DIRISIS/mx iso=$DIRWORK/${1}/$3.iso create=$3
+$DIRISIS/mx iso=$DIRWORK/${1}/$3.iso create=$3 -all now
 
 echo "Gera o relatorio do mxf0"
 $DIRISIS/mxf0 $3 create=$3_analise

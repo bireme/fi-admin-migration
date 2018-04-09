@@ -1,10 +1,11 @@
 #!/bin/bash
 # -------------------------------------------------------------------------- #
-# cpo002.sh - Realiza conversao de registro LILACS para versao 1.7  #
+# join_dedup.sh - Checa se os registro estão duplicados utilizando o DeDup  #
 # -------------------------------------------------------------------------- #
-# 
-#     Chamada : cpo002.sh  
-#     Exemplo : ./cpo002.sh <FI>
+#
+#     Chamada : join_dedup.sh
+#     Exemplo : ./join_dedup.sh <Diretorio> <iso-8859-1/utf-8>
+#
 #
 # -------------------------------------------------------------------------- #
 #  Centro Latino-Americano e do Caribe de Informação em Ciências da Saúde
@@ -17,9 +18,10 @@
 # versao data, Responsavel
 #       - Descricao
 cat > /dev/null <<HISTORICO
-vrs:  1.00 20170103, Ana Katia Camilo / Fabio Luis de Brito
+vrs:  1.00 20170320,  Ana Katia Camilo
         - Edicao original
 HISTORICO
+
 # -------------------------------------------------------------------------- #
 
 # Anota hora de inicio de processamento
@@ -30,63 +32,37 @@ echo "[TIME-STAMP] `date '+%Y.%m.%d %H:%M:%S'` [:INI:] Processa ${0} ${1} ${2} $
 echo ""
 # ------------------------------------------------------------------------- #
 
-# Ajustando variaveis para processamento
-source /bases/fiadmin2/1_trata_insumo/tpl/settings.inc
-
-# -------------------------------------------------------------------------- #
-
 echo "- Verificacoes iniciais"
 
 # Verifica passagem obrigatoria de 3 parametro
 if [ "$#" -ne "3" ]; then
   echo "ERROR: Parametro errado"
-  echo "Use: $0 <FI - que deve ser o nome do arquivo iso> <file_in> <file_out>"
-  echo "Exemplo: $0 bbo 01_lil cpo002 "
+  echo "Use: $0 Nome do diretorio do lote <sci_201710 | bbo> Tipo de check <Sas | MNT | MNTam> file in <$DIRTRAT/lil_OK | lil_Sas | lil_MNT >"
   exit 0
 fi
 
-echo "  -> Base origem"
-# Verifica se existe arquivo inicial
-if [ ! -f $DIRDATA/${1}/$2.mst ]; then
-  echo "ERROR: Base para processamento nao encontrada [ $DIRDATA/${1}/$2.mst ]"; exit 0
-else
-  echo "  OK - $DIRDATA/${1}/cpo$2.mst"
-fi
+# Ajustando variaveis para processamento
+source /bases/fiadmin2/DeDup/config/settings.inc
 
-# -------------------------------------------------------------------------- #
+## -------------------------------------------------------------------------- #
 
-echo "  -> Garante diretorio vazio para processamento"
-[ ! -d $DIRWORK/${1} ] && mkdir $DIRWORK/${1}
+cd $DIRWRK/$1
 
-echo "  -> Traz insumo para processamento"
-cd $DIRDATA/${1}
-$DIRISIS/mx iso=$DIRINSUMO/${1}.iso create=${1} -all now 
+echo "Join OUT1"
+echo ~$DIRISIS/mx $3 "join=out1_$2_wrk2,995:101='001_'v2" "join=out1_$2_wrk2,994:1='101_'s(mpu,v2,mpl)" "proc='d32001d32002'" create=lil_wrk1_$2 -all now tell=1000~
+$DIRISIS/mx $3 "join=out1_$2_wrk2,995:101='001_'v2" "join=out1_$2_wrk2,994:1='101_'s(mpu,v2,mpl)" "proc='d32001d32002'" create=lil_wrk1_$2 -all now tell=$VTELL
 
-echo "  -> Limpa base - mxcp"
-$DIRISIS/mxcp ${1} create=01_lil clean log=/dev/null
+echo "Join OUT2"
+echo ~$DIRISIS/mx lil_wrk1_$2 "join=out2_$2,996:4,997:2=s(mpu,v2,mpl)" "proc='d32001'" create=lil_wrk2_$2 -all now tell=1000~
+$DIRISIS/mx lil_wrk1_$2 "join=out2_$2,996:4,997:2=s(mpu,v2,mpl)" "proc='d32001'" create=lil_wrk2_$2 -all now tell=$VTELL
 
-echo "  -> Desbloqueia - retag"
-$DIRISIS/retag 01_lil unlock
+echo "Join OUT_OK"
+echo ~$DIRISIS/mx lil_wrk2_$2 "join=out_ok_$2,998:2=s(mpu,v2,mpl)" "proc='d32001'" create=lil_$2 -all now tell=1000~
+$DIRISIS/mx lil_wrk2_$2 "join=out_ok_$2,998:2=s(mpu,v2,mpl)" "proc='d32001'" create=lil_$2 -all now tell=$VTELL
 
-echo
-echo "INICIO DOS AJUSTES ###########################################################################################"
-
-echo "----------------------------------------------------------------------------------------"
-echo "Campo de Numero de Identificacao"
-
-echo "002 Identificados - No campo ID[02] vai para o Origem exemplo: 776 BBO^i345 e o campo ID recebe um numero sequencial"
-$DIRISIS/mx $2 "proc='d2d776','<2>'f(val(mfn),0,0)'</2>','<776>${1}-'v2'</776>'" create=$3 -all now tell=10000
-
-$DIRISIS/mx $3 "proc='d*',if p(v776) then |<2 0>|v2|</2>|,(|<776>|v776|</776>|) fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000
-
-
-echo "----------------------------------------------------------------------------------------"
-
-echo
 echo
 echo "Fim de processamento"
 echo
-
 
 HORA_FIM=`date '+ %s'`
 DURACAO=`expr ${HORA_FIM} - ${HORA_INICIO}`
@@ -109,3 +85,4 @@ echo "[TIME-STAMP] `date '+%Y.%m.%d %H:%M:%S'` [:FIM:] Processa  ${0} ${1} ${2} 
 # ------------------------------------------------------------------------- #
 echo
 echo
+

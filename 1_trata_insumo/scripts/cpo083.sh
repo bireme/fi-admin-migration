@@ -72,8 +72,11 @@ $DIRISIS/mx seq=$DIRTAB/gizTiraAUResumo.seq create=gizTiraAUResumo -all now
 $DIRISIS/mx $2 mfrl=8388608 fmtl=8388608 "proc=@$DIRTAB/v83_sub_i.prc" create=$3_1 -all now
 $DIRISIS/mx $3_1 "gizmo=gizTiraAUResumo,83" create=$3_2 -all now
 
+echo "Ajustes do subcampo de idioma especificos"
+$DIRISIS/mx $3_2 "proc='d83',(if v83:'^ipt)' then '<83>'replace(v83,'^ipt)',')^ipt')'</83>' else if v83^i.1=' ' then '<83 0>'replace(v83,'^i pt','^ipt')'</83>' else if size(v83^i)>3 then '<83>'replace(v83,'^ipt','^ipt|')'</83>' else |<83>|v83|</83>| fi,fi,fi)"  create=$3_3 -all now tell=1000
+
 echo "Cria master"
-$DIRISIS/mx $3_2 "proc='S'" create=$3 -all now
+$DIRISIS/mx $3_3 "proc='S'" create=$3 -all now
 
 echo "cria ISO"
 $DIRISIS/mx $3 "proc='d*',if p(v83) then |<2 0>|v2|</2>|,(|<983>|v83|</983>|) fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000

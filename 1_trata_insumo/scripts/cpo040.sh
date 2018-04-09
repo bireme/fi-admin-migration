@@ -63,6 +63,11 @@ echo "INICIO DOS AJUSTES #######################################################
 echo "--------------------------------------------------------------------------------------------------------------"
 echo "Descricao"
 
+cp $DIRTAB/gutf8ans.id .
+
+$DIRISIS/id2i gutf8ans.id create=gutf8ans
+$DIRISIS/mx seq=$DIRTAB/Idioma_coleciona.seq gizmo=gutf8ans create=Idioma_coleciona -all now tell=10
+
 echo "040 Idioma Gizmo no campo de idioma [40]"
 cp $DIRTAB/gizIdioma.seq .
 $DIRISIS/mx seq=gizIdioma.seq create=gizIdioma -all now
@@ -70,13 +75,16 @@ $DIRISIS/mx seq=gizIdioma.seq create=gizIdioma -all now
 echo "Inclui se não tem pega a informacao do titulo"
 $DIRISIS/mx $2 "proc='d940',if p(v40) then ('<940>'v40'</940>') else if p(v12^i) then '<940>'v12^i[1]'</940>' else if p(v18^i) then '<940>'v18^i[1]'</940>'  fi,fi,fi" create=$3_1 -all now
 
+echo "Tornar o campo repetitivo separado por /"
+$DIRISIS/mxcp $3_1 create=$3_2 repeat=/,940 
+
 echo "Gizmo"
-$DIRISIS/mx $3_1 "gizmo=gizIdioma,940" create=$3_2 -all now 
+$DIRISIS/mx $3_2 "gizmo=gizIdioma,940" "gizmo=Idioma_coleciona,940" create=$3_3 -all now 
 echo "Relatorio"
-$DIRISIS/mx $3_2 "pft=if a(v940) then v2'|CPO040|sem'/ fi" -all now >$DIROUTS/$1/Rel_$3.txt
+$DIRISIS/mx $3_3 "pft=if a(v940) then v2'|CPO040|sem'/ fi" -all now >$DIROUTS/$1/Rel_$3.txt
 
 echo "Cria Master e arquivo ISO"
-$DIRISIS/mx $3_2 "proc='S'" create=$3 -all now
+$DIRISIS/mx $3_3 "proc='S'" create=$3 -all now
 
 $DIRISIS/mx $3 "proc='d*',if p(v940) then |<2 0>|v2|</2>|,(|<940>|v940|</940>|) fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000
 echo

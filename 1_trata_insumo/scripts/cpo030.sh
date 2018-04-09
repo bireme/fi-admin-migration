@@ -85,13 +85,16 @@ $DIRISIS/mx $2 actab=$DIRTAB/ansiac.tab uctab=$DIRTAB/ansiuc.tab "join=title,930
 echo "30 Titulo (Serie) - Check do Titulo/ISSN com a base Title pelo ISSN [35](LILACS)/ISSN [400](TITLE)"
 $DIRISIS/mx $3_1 actab=$DIRTAB/ansiac.tab uctab=$DIRTAB/ansiuc.tab  "join=title,930:150,935:400,945:450=if a(v930) then s(mpu,v35,mpl)/ fi" "proc='s'" "proc='d32001'" create=$3_2 tell=5000 -all now
 
+echo "30 Titulo (Serie) - Check do Titulo com a base coltitle pelo Titulo [30](LILACS)/[160](coltitle)"
+$DIRISIS/mx $3_2 actab=$DIRTAB/ansiac.tab uctab=$DIRTAB/ansiuc.tab  "join=$DIRTAB/title/coltitle_OK,930:5,935:2=if a(v930) then 'TI_'s(mpu,v30,mpl)/ fi" "proc='s'" "proc='d32001'" create=$3_3 tell=5000 -all now
+
 echo "Gera Relatorio"
-$DIRISIS/mx $3_2 "pft=if s(mpu,v5.1,mpl)='S' and s(mpu,v6,mpl)='AS' and a(v930) then v2'|30_TI|'v30[1]'|35_IS|'v35/ fi" -all now >$DIROUTS/$1/Rel_$3.txt
-$DIRISIS/mx $3_2 "tab=if s(mpu,v5.1,mpl)='S' and s(mpu,v6,mpl)='AS' and a(v930) then '30_TI|'v30[1]'|35_IS|'v35/ fi" -all now >$DIROUTS/$1/Lista_$3.txt
+$DIRISIS/mx $3_3 "pft=if s(mpu,v5.1,mpl)='S' and s(mpu,v6,mpl)='AS' and a(v930) then v2'|30_TI|'v30[1]'|35_IS|'v35/ fi" -all now lw=0 >$DIROUTS/$1/Rel_$3.txt
+$DIRISIS/mx $3_3 "tab=if s(mpu,v5.1,mpl)='S' and s(mpu,v6,mpl)='AS' and a(v930) then '30_TI|'v30[1]'|35_IS|'v35/ fi" -all now lw=0 >$DIROUTS/$1/Lista_$3.txt
 
 echo "Passa o gizmo para normalizar os título"
-$DIRISIS/mx $3_2 "proc=if s(mpu,v5.1,mpl)='S' and a(v930) then 'd914','<914>'v30[1]'</914>' fi" create=$3_3 -all now
-$DIRISIS/mx $3_3 "gizmo=$DIRTAB/title/bbo_title,914" create=$3_4 -all now
+$DIRISIS/mx $3_3 "proc=if s(mpu,v5.1,mpl)='S' and a(v930) then 'd914','<914>'v30[1]'</914>' fi" create=$3_4 -all now
+#$DIRISIS/mx $3_3 "gizmo=$DIRTAB/title/bbo_title,914" create=$3_4 -all now
 
 echo "Refaz o join com os titulos corretos para trazer todas as informacoes necessarias da title - NORMALIZAR antes do primeiro join e fazer so uma fez!!"
 $DIRISIS/mx $3_4 actab=$DIRTAB/ansiac.tab uctab=$DIRTAB/ansiuc.tab  "join=title,930:150,935:400,945:450=if a(v915) then s(mpu,v914,mpl) fi" "proc='s'" "proc='d32001'" create=$3_5 -all now

@@ -68,6 +68,10 @@ $DIRISIS/mx $2 "proc=,if s(mpu,v4,mpl):'LILACS' then '<950>LILACS</950>' fi" "pr
 
 $DIRISIS/mx $3_1 "proc='S'" create=$3 -all now
 
+echo "Gera Relatorios"
+$DIRISIS/mx $3 "tab=(v4/)" -all now >$DIROUTS/$1/Rel_$3.txt
+
+
 $DIRISIS/mx $3 "proc='d*',if p(v904) or p(v950) then |<2 0>|v2|</2>|,(|<950>|v950|</950>|),(|<904>|v904|</904>|) fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000
 
 echo

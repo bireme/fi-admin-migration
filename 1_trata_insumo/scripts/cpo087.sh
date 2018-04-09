@@ -69,7 +69,7 @@ $DIRISIS/mx seq=$DIRTAB/gDescSub.seq create=gDescSub -all now
 
 $DIRISIS/mx $2 gizmo=gDescSub,87 create=$3_1 -all now
 
-$DIRISIS/mx $3_1 "proc=if p(v87) then ,(if s(mpu,v87.2,mpl)='^D' then if v87.2='^D' then '<987 0>^d'v87*2'</987>' else '<987 0>'v87'</987>' fi, else if v87.1='^' then '<987 0>^d'v87*1'</987>' else '<987 0>^d'v87'</987>' fi,fi)fi" create=$3_2 -all now
+$DIRISIS/mx $3_1 "proc=if p(v87) then ,(if s(mpu,v87,mpl)='^DBIREME' then else if s(mpu,v87.2,mpl)='^D' then if v87.2='^D' then '<987 0>^d'v87*2'</987>' else '<987 0>'v87'</987>' fi, else if v87.1='^' then '<987 0>^d'v87*1'</987>' else '<987 0>^d'v87'</987>' fi,fi,fi)fi" create=$3_2 -all now
 
 echo "Cria master e ISO"
 $DIRISIS/mx $3_2 "proc='S'" create=$3 -all now

@@ -68,8 +68,9 @@ $DIRISIS/mx iso=$DIRTAB/centros.iso create=centros -all now
 $DIRISIS/mx centros "fst=1 0 v1/" fullinv=centros
 $DIRISIS/mx $2 "join=centros,901:1=s(mpu,v1^*,mpl)" "proc='d32001'" create=$3_1 -all now
 
-echo "Gera Relatorio"
+echo "Gera Relatorios"
 $DIRISIS/mx $3_1 "pft=if a(v901) then mfn'|01_CC|'v1/ fi" -all now >$DIROUTS/$1/Rel_$3.txt
+$DIRISIS/mx seq=$DIROUTS/$1/Rel_cpo001.txt "tab=(v3/)" -all now >$DIROUTS/$1/Rel_$3_tab.txt
 
 echo "Cria Master"
 $DIRISIS/mx $3_1 "proc='S'" create=$3 -all now

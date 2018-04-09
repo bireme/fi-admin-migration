@@ -61,12 +61,14 @@ cd $DIRDATA/${1}
 echo
 echo "INICIO DOS AJUSTES ###########################################################################################"
 echo "--------------------------------------------------------------------------------------------------------------"
-echo "Controle"
+cho "Controle"
 
 
 echo "091 Data de Entrada - Data de Controle"
 echo "Arruma Data de entrada"
-$DIRISIS/mx $2 "proc='d91',if v91*4.2>'12' or v91*4.2<'01' then '<991>'v91.4'1231</991>' else if (v91*4.2='04' or v91*4.2='06' or v91*4.2='09' or v91*4.2='11') and (v91*6.2<'01' or v91*6.2>'30') then '<991>'v91.6'30</991>' else if v91*4.2='02' and (v91*6.2<'01' or v91*6.2>'28') then '<991>'v91.6'28</991>' else if size(v91*6.2)<2 then '<991>'v91.6'01</991>' else '<991>'v91'</991>' fi,fi,fi,fi" create=$3_1 -all now tell=5000
+$DIRISIS/mx $2 "proc='d91',if a(v91) and p(v84) then '<991>'v84.4,v84*5.2,v84*8.2'</991>' else if v91*4.2>'12' or v91*4.2<'01' then '<991>'v91.4'1231</991>' else if (v91*4.2='04' or v91*4.2='06' or v91*4.2='09' or v91*4.2='11') and (v91*6.2<'01' or v91*6.2>'30') then '<991>'v91.6'30</991>' else if v91*4.2='02' and (v91*6.2<'01' or v91*6.2>'28') then '<991>'v91.6'28</991>' else if size(v91*6.2)<2 then '<991>'v91.6'01</991>' else if (v91*4.2='01' or v91*4.2='03' or v91*4.2='05' or v91*4.2='07' or v91*4.2='08' or v91*4.2='10' or v91*4.2='12') and (v91*6.2<'01' or v91*6.2>'31') then '<991>'v91.6'31</991>' else '<991>'v91.8'</991>' fi,	fi,fi,fi,fi,fi" create=$3_1 -all now tell=5000
+
+#"proc='d91',if a(v91) and p(v84) then '<991>'v84.4,v84*5.2,v84*8.2'</991>' else if v91*4.2>'12' or v91*4.2<'01' then '<991>'v91.4'1231</991>' else if (v91*4.2='04' or v91*4.2='06' or v91*4.2='09' or v91*4.2='11') and (v91*6.2<'01' or v91*6.2>'30') then '<991>'v91.6'30</991>' else if v91*4.2='02' and (v91*6.2<'01' or v91*6.2>'28') then '<991>'v91.6'28</991>' else if size(v91*6.2)<2 then '<991>'v91.6'01</991>' else '<991>'v91.8'</991>' fi,fi,fi,fi,fi" 
 
 echo "Cria Master"
 $DIRISIS/mx $3_1 "proc='S'" create=$3 -all now

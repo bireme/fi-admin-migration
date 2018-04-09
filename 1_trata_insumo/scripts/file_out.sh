@@ -163,8 +163,14 @@ $DIRISIS/mx lil_033 "proc='d950',if p(v950) then (|<950 0>|v950|</950>|) fi" cre
 echo "cpo500"
 $DIRISIS/mx lil_034 "proc='d995',if p(v995) then (|<500 0>|v950|</500>|) fi" create=lil_035 -all now
 
+echo "cpo013"
+$DIRISIS/mx lil_035 "proc='d13d913',if p(v913) then (|<13 0>|v913|</13>|) fi" create=lil_036 -all now
+
+echo "cpo019"
+$DIRISIS/mx lil_036 "proc='d19d919',if p(v919) then (|<19 0>|v919|</19>|) fi" create=lil_037 -all now
+
 echo "Final"
-$DIRISIS/mx lil_035 "proc='S'" iso=lil_OK.iso -all now
+$DIRISIS/mx lil_037 "proc='S'" iso=lil_OK.iso -all now
 
 # ---------------------------------------------------------------------------#
 

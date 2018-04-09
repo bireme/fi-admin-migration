@@ -65,7 +65,7 @@ echo "Descricao"
 
 echo "111 Tipo de Arquivo de computador"
 echo "Apaga n para colocar o pipe |"
-$DIRISIS/mx $2 "proc=if v111='pipe' then 'd111' fi" create=cpo$3_1 -all now tell=5000
+$DIRISIS/mx $2 "proc=if v111='pipe' then 'd111' fi" create=$3_1 -all now tell=5000
 
 echo "Problema do pipe I"
 $DIRISIS/mx $3_1 "proc=if v111='|' then 'd111','<111 0>pipe</111>' fi" create=$3_2 -all now tell=5000

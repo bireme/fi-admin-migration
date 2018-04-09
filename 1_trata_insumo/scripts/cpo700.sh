@@ -80,7 +80,7 @@ echo "Cria master"
 $DIRISIS/mx $3_2 "proc='S'" create=$3 -all now tell=10000
 
 echo "Cria ISO"
-$DIRISIS/mx $3 "proc='d*',if p(v701) and p(v700) then |<2 0>|v2|</2>|,(|<970>|v700|</970>|) else if p(v700) and a(v701) then |<2 0>|v2|</2>|,|<995>|v700|</995>| fi,fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000
+$DIRISIS/mx $3 "proc='d*',if p(v701) and p(v700) then |<2 0>|v2|</2>|,(|<970>|v700|</970>|) else if p(v700) and a(v701) then if s(mpu,v8,mpl):'SCIELO' then |<2 0>|v2|</2>|,(|<970>|v700|</970>|) else |<2 0>|v2|</2>|,|<995>|v700|</995>| fi,fi,fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000
 echo
 echo "TERMINO DOS AJUSTES ##########################################################################################"
 

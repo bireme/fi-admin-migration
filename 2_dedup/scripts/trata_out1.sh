@@ -1,15 +1,16 @@
 #!/bin/bash
 # -------------------------------------------------------------------------- #
-# clean_fields.sh - Realiza conversao de registro LILACS para versao 1.7  #
+# trata_out1.sh - Checa se os registro estão duplicados utilizando o DeDup  #
 # -------------------------------------------------------------------------- #
 #
-#     Chamada : clean_fields.sh
-#     Exemplo : ./clean_fields.sh <FI>
+#     Chamada : trata_out1.sh
+#     Exemplo : ./trata_out1.sh <Diretorio> <iso-8859-1/utf-8>
+#
 #
 # -------------------------------------------------------------------------- #
-#  Centro Latino-Americano e do Caribe de InformaÃ§Ã£o em CiÃªncias da SaÃºde
-#     Ã© um centro especialidado da OrganizaÃ§Ã£o Pan-Americana da SaÃºde,
-#           escritÃ³rio regional da OrganizaÃ§Ã£o Mundial da SaÃºde
+#  Centro Latino-Americano e do Caribe de Informação em Ciências da Saúde
+#     é um centro especialidado da Organização Pan-Americana da Saúde,
+#           escritório regional da Organização Mundial da Saúde
 #                      BIREME / OPS / OMS (P)2016
 # -------------------------------------------------------------------------- #
 
@@ -17,9 +18,10 @@
 # versao data, Responsavel
 #       - Descricao
 cat > /dev/null <<HISTORICO
-vrs:  1.00 20171203, Ana Katia Camilo 
+vrs:  1.00 20170320,  Ana Katia Camilo
         - Edicao original
 HISTORICO
+
 # -------------------------------------------------------------------------- #
 
 # Anota hora de inicio de processamento
@@ -30,52 +32,40 @@ echo "[TIME-STAMP] `date '+%Y.%m.%d %H:%M:%S'` [:INI:] Processa ${0} ${1} ${2} $
 echo ""
 # ------------------------------------------------------------------------- #
 
-# Ajustando variaveis para processamento
-source /bases/fiadmin2/1_trata_insumo/tpl/settings.inc
-
-# -------------------------------------------------------------------------- #
-
 echo "- Verificacoes iniciais"
 
 # Verifica passagem obrigatoria de 2 parametro
 if [ "$#" -ne "2" ]; then
   echo "ERROR: Parametro errado"
-  echo "Use: $0 <FI - que deve ser o nome do arquivo iso> <file_in>"
-  echo "Exemplo: $0 bbo 01_lil" 
+  echo "Use: $0 Nome do diretorio do lote <sci_201710 | bbo> Tipo de check <Sas | MNT | MNTam>"
   exit 0
 fi
 
-echo "INICIO ###########################################################################################"
-echo "--------------------------------------------------------------------------------------------------------------"
-echo "Analise  -> Inicio"
-# Verifica se existe arquivo inicial
+# Ajustando variaveis para processamento
+source /bases/fiadmin2/DeDup/config/settings.inc
 
-if [ ! -f $DIROUTS/$1/fields_proc_$1.txt ]; then
-  echo "O Arquivo [ $DIROUTS/$1/fields_proc_$1.txt ] não bases usadas no processamento"; exit 0
-else
-   echo "Area de trabalho"
-   cd $DIRDATA/${1}
+## -------------------------------------------------------------------------- #
+##
 
-   for i in $(< $DIROUTS/$1/fields_proc_$1.txt)
-   do
-      echo "Campo $i"
-      $DIRISIS/mx $2 "proc=if p(v$i) then 'd$i','<61 0>Campo $i: 'v$i'</61>' fi" copy=$2 -all now 
-   done
-   echo "Limpa"
-   $DIRISIS/mxcp $2 create=clean_$2 clean 
-   echo "Ordena" 
-   $DIRISIS/mx clean_$2 "proc='S'" create=cpo000 -all now
-fi
+cd $DIRWRK/$1
 
+	echo "Cria master apartir do arquivo texto"
+	$DIRISIS/mx seq=$DIRWRK/$1/out1_$1_$2.txt create=$DIRWRK/$1/out1_$2_wrk1 -all now tell=$VTELL
+	echo "Apaga registros duplicados com o mesmo ID do out1"
+	$DIRISIS/mx $DIRWRK/$1/out1_$2_wrk1 "proc=if v3=v4 then 'd*' fi" iso=$DIRWRK/$1/out1_$2_wrk1.iso -all now tell=$VTELL
 
+	echo "Retira registros duplicados da lista do out1"
+	$DIRISIS/mx iso=$DIRWRK/$1/out1_$2_wrk1.iso "pft=v3'|'v4/" -all now |sort -u >$DIRWRK/$1/out1_$2_wrk1.txt
 
-echo "----------------------------------------------------------------------------------------"
+	echo "Cria base para analise out1"
+	$DIRISIS/mx seq=$DIRWRK/$1/out1_$2_wrk1.txt "proc='d2d101','<101>'v2'</101>'," create=$DIRWRK/$1/out1_$2_wrk2 -all now
 
-echo
+	echo "inverte"
+	$DIRISIS/mx $DIRWRK/$1/out1_$2_wrk2 "fst=@$DIRTAB/out1_wrk3.fst" fullinv=$DIRWRK/$1/out1_$2_wrk2 tell=5000
+
 echo
 echo "Fim de processamento"
 echo
-
 
 HORA_FIM=`date '+ %s'`
 DURACAO=`expr ${HORA_FIM} - ${HORA_INICIO}`
@@ -98,3 +88,4 @@ echo "[TIME-STAMP] `date '+%Y.%m.%d %H:%M:%S'` [:FIM:] Processa  ${0} ${1} ${2} 
 # ------------------------------------------------------------------------- #
 echo
 echo
+

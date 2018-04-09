@@ -66,6 +66,9 @@ echo "Nivel analitico"
 echo "010 Autor Pessoal (Analitico)"
 
 cp $DIRTAB/giz_1016_pa.seq .
+cp $DIRTAB/gutf8ans.id .
+
+$DIRISIS/id2i gutf8ans.id create=gutf8ans
 $DIRISIS/mx seq=giz_1016_pa.seq gizmo=gutf8ans create=giz_1016_pa -all now
 
 $DIRISIS/mx $2 "proc='d10',(if v10:'^P' and not v10:'^p' then '<10 0>'replace(v10,'^P','^p')'</10>' else if p(v10) then '<10 0>'v10'</10>' fi,fi/)" create=$3_1 lw=0 -all now
