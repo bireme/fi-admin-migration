@@ -63,16 +63,30 @@ echo "INICIO DOS AJUSTES #######################################################
 echo "--------------------------------------------------------------------------------------------------------------"
 echo "Controle"
 
+[ -f $DIROUTS/$1/RelMed1_$3.txt ] && rm $DIROUTS/$1/RelMed1_$3.txt
+
 echo "006 Nível de Tratamento - Checa segundo os tipos controlados pela metodologia"
 $DIRISIS/mx seq=$DIRTAB/tab_006.txt create=tab_006 -all now
 $DIRISIS/mx tab_006 "fst=1 0 v1" fullinv=tab_006 tell=1
 $DIRISIS/mx $2 "join=tab_006,906:1=s(mpu,v6,mpl)" "proc='d32001'" create=$3_1 -all now
 
-echo "Gera Relatorio"
-$DIRISIS/mx $3_1 "pft=if a(v906) then v2'|06_NB|'v6/ fi" lw=0 -all now >>$DIROUTS/$1/Rel_$3.txt
+echo "Gera Relatorio metodologia LILACS 1"
+$DIRISIS/mx $3_1 "pft=if a(v906) then 'ID_PROC|'v2,'|ID_v2|'v776^i,'|06_NB|'v6/ fi" lw=0 -all now >>$DIROUTS/$1/RelMed1_$3.txt
+
+echo "Gera Relatorio metodologia LILACS 2"
+$DIRISIS/mx $3_1 "pft=@$DIRTAB/v6_niv.pft" lw=0 tell=1000 -all now>$DIROUTS/$1/RelMed2_$3.txt
+
+echo "Ajusta a questao das Analiticas de MNT migrados do LILDBI-WEB que se tornaram fonte"
+$DIRISIS/mx $3_1 "proc=if not v6:'a' and p(v12) then 'd906','<906>a'v906'</906>' fi" create=$3_2 -all now
+
+echo "Ajusta a questao dos registros que tem colecao migrados do LILDBI-WEB"
+$DIRISIS/mx $3_2 "proc='d906',if v6:'c' then if p(v25) and (p(v23) or p(v24)) then else '<906 0>'replace(v6,'c','')'</906>' fi else if p(v25) then '<906 0>'v6'c</906>' else '<906 0>'v6'</906>' fi,fi" create=$3_3 -all now
+
+echo "Gera Relatorio metodologia LILACS 2"
+$DIRISIS/mx $3_3 "tab=v6'|'v906/" lw=0 tell=1000 -all now>$DIROUTS/$1/RelLista_$3.txt
 
 echo "Cria Master"
-$DIRISIS/mx $3_1 "proc='S'" create=$3 -all now
+$DIRISIS/mx $3_3 "proc='S'" create=$3 -all now
 
 echo "Gera o ISO"
 $DIRISIS/mx $3 "proc='d*',if p(v906) then |<2 0>|v2|</2>|,|<906 0>|v906[1]|</906>| fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000

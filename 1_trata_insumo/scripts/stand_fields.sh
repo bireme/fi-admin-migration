@@ -45,7 +45,7 @@ if [ "$#" -ne "1" ]; then
   exit 0
 fi
 # -------------------------------------------------------------------------- #
-echo "Inicio do processamento"
+echo "Inicio do processamento - stand_fields.sh"
 
 echo "Primeiro Nivel `date '+%Y.%m.%d %H:%M:%S'`"
 #./cpo002.sh $1 01_lil cpo002

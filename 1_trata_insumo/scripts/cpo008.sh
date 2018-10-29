@@ -32,7 +32,7 @@ echo ""
 
 # Ajustando variaveis para processamento
 source /bases/fiadmin2/1_trata_insumo/tpl/settings.inc
-
+source /bases/fiadmin2/config/$1.inc
 # -------------------------------------------------------------------------- #
 
 echo "- Verificacoes iniciais"
@@ -86,13 +86,18 @@ $DIRISIS/mx $3_4 "proc=if v8:'^u^u' then 'd8d908',if p(v888^u) then '<908 0>'v88
 echo "008 URL - Cria master"
 $DIRISIS/mx $3_5 "proc='S'" create=$3 -all now tell=10000
 
+[ -z $URL_UPLOAD ] || echo "Gera Relatorio de upload de arquivo no LILDBI-WEB $URL_UPLOAD"; $DIRISIS/mx $3_5 "pft=(if v908:'$URL_UPLOAD' then v776[1]^i'|'v2[1]'|'v5[1]'|'v65[1].4'|'v35[1]'|'v31[1]'|'v32[1]'|'v908^u'|'v908^q'|'if p(v16) then v16[1]^* else v17[1]^* fi/ fi)" -all now lw=0 >$DIRDATA/$1/cpo008_Upload.txt
+
+[ -s $DIRDATA/$1/cpo008_Upload.txt ] && $DIRSCRI/url008.sh $1
+
+
 echo "008 URL - Cria ISO somento com ID e os campos alterados"
 $DIRISIS/mx $3 "proc='d*',if p(v908) or p(v938) or p(v995) then |<2 0>|v2|</2>|,(|<908>|v908|</908>|),(|<938>|v938|</938>|)(|<995>|v995|</995>|) fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000
 
 echo
 echo "TERMINO DOS AJUSTES ##########################################################################################"
 
-echo "-------------------------------------------------------------------------"o
+echo "-------------------------------------------------------------------------"
 echo
 echo "Fim de processamento"
 echo

@@ -32,7 +32,7 @@ echo ""
 
 # Ajustando variaveis para processamento
 source /bases/fiadmin2/1_trata_insumo/tpl/settings.inc
-
+source /bases/fiadmin2/config/$1.inc
 # -------------------------------------------------------------------------- #
 
 echo "- Verificacoes iniciais"
@@ -64,27 +64,48 @@ echo "--------------------------------------------------------------------------
 echo "Nivel analitico"
 
 echo "010 Autor Pessoal (Analitico)"
-
-cp $DIRTAB/giz_1016_pa.seq .
+echo "Traz o gizmo de utf para ansi"
 cp $DIRTAB/gutf8ans.id .
 
+echo "Gera o master do gizmo"
 $DIRISIS/id2i gutf8ans.id create=gutf8ans
-$DIRISIS/mx seq=giz_1016_pa.seq gizmo=gutf8ans create=giz_1016_pa -all now
 
-$DIRISIS/mx $2 "proc='d10',(if v10:'^P' and not v10:'^p' then '<10 0>'replace(v10,'^P','^p')'</10>' else if p(v10) then '<10 0>'v10'</10>' fi,fi/)" create=$3_1 lw=0 -all now
+echo "Gera o master da Pais de afiliacao"
+$DIRISIS/mx seq=$DIRTAB/paisAfili.txt gizmo=gutf8ans create=paisAfili -all now
+$DIRISIS/mx seq=$DIRTAB/estadoPaisAfili.txt gizmo=gutf8ans create=estadoPaisAfili -all now
+#$DIRISIS/mx seq=$DIRTAB/giz_1016_pa.seq gizmo=gutf8ans create=giz_1016_pa -all now
 
-$DIRISIS/mx $3_1 "gizmo=giz_1016_pa,10" create=$3_2 -all now
+#echo "Gera o master com o gizmo para paisAfilia"
+#$DIRISIS/mx seq=$DIRTAB/g_paisAfilia.seq gizmo=gutf8ans create=g_paisAfilia -all now
+
+echo "Proc para arrumar o subcampo P"
+$DIRISIS/mx $2 "proc='d10',(if v10:'^P' and not v10:'^p' then '<10 0>'replace(v10,'^P','^p')'</10>' else if p(v10) then '<10 0>'replace(v10,'|','/')'</10>' fi,fi/)" create=$3_1 lw=0 -all now
+
+echo "Passa o gizmo Pais de afiliacao"
+$DIRISIS/mx $3_1 "gizmo=paisAfili,10" create=$3_2 -all now
+$DIRISIS/mx $3_2 "gizmo=estadoPaisAfili,10" create=$3_3 -all now
+#$DIRISIS/mx $3_1 "gizmo=giz_1016_pa,10" create=$3_2 -all now
+
+#echo "Passa o gizmo de pais Afilia "
+#$DIRISIS/mx $3_2 "gizmo=g_paisAfilia,10" create=$3_3 -all now
 
 echo "Inclusao de Afiliacao s.af quando nao tem sub 1"
-$DIRISIS/mx $3_2 "proc='d10'(if p(v10) then if a(v10^1) then '<10 0>'v10'^1s. af</10>' else '<10 0>'v10'</10>' fi,fi)" create=$3_3 -all now
+$DIRISIS/mx $3_3 "proc='d10'(if p(v10) then if a(v10^1) then '<10 0>'v10'^1s. af</10>' else '<10 0>'v10'</10>' fi,fi)" create=$3_4 -all now
 
 echo "Tira s.af do comeco do autor"
-$DIRISIS/mx $3_3 "proc='d10',if p(v10) then (if v10^*.2='s.' then '<10>'v10*7'</10>' else '<10>'v10'</10>' fi),fi" create=$3_4 -all now
+$DIRISIS/mx $3_4 "proc='d10',if p(v10) then (if v10^*.2='s.' then '<10>'v10*7'</10>' else '<10>'v10'</10>' fi),fi" create=$3_5a -all now
 
-$DIRISIS/mx $3_4 "pft=(if size(v10^p)>2 then v2[1]'|CPO010|'v10^p/ fi)" lw=0 -all now >$DIROUTS/$1/Rel_country_afil_$3.txt
+echo "Customizado"
+if [ "$TAB_CPO010" ]; then
+	$DIRISIS/mx seq=$DIRTAB/$TAB_CPO010 gizmo=gutf8ans create=$TAB_CPO010 -all now
+	$DIRISIS/mx $3_5a gizmo=$TAB_CPO010,10 create=$3_5 -all now
+else
+        $DIRISIS/mx $3_5a create=$3_5 -all now
+fi
 
+$DIRISIS/mx $3_5 "pft=(if size(v10^p)>2 then v2[1]'|CPO010|'v10^p/ fi)" lw=0 -all now >$DIROUTS/$1/Rel_country_afil_$3.txt
 echo "Cria o Master e o arquivo ISO"
-$DIRISIS/mx $3_4 "proc='S'" create=$3 -all now
+$DIRISIS/mx $3_5 "proc='S'" create=$3 -all now
 
 $DIRISIS/mx $3 "proc='d*',if p(v10) then |<2 0>|v2|</2>|,(|<910>|v10|</910>|) fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000
 echo

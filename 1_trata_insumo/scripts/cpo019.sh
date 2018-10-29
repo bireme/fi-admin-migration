@@ -1,10 +1,10 @@
 #!/bin/bash
 # -------------------------------------------------------------------------- #
-# cpo004.sh - Realiza conversao de registro LILACS para versao 1.7  #
+# cpo019.sh - Realiza conversao de registro LILACS para versao 1.7  #
 # -------------------------------------------------------------------------- #
 # 
-#     Chamada : cpo004.sh  
-#     Exemplo : ./cpo004.sh <FI> <file_in>
+#     Chamada : cpo019.sh  
+#     Exemplo : ./cpo019.sh <FI>
 #
 # -------------------------------------------------------------------------- #
 #  Centro Latino-Americano e do Caribe de Informação em Ciências da Saúde
@@ -32,7 +32,6 @@ echo ""
 
 # Ajustando variaveis para processamento
 source /bases/fiadmin2/1_trata_insumo/tpl/settings.inc
-source /bases/fiadmin2/config/$1.inc
 
 # -------------------------------------------------------------------------- #
 
@@ -42,7 +41,7 @@ echo "- Verificacoes iniciais"
 if [ "$#" -ne "3" ]; then
   echo "ERROR: Parametro errado"
   echo "Use: $0 <FI - que deve ser o nome do arquivo iso> <file_in> <file_out>"
-  echo "Exemplo: $0 bbo cpo002 cpo004"
+  echo "Exemplo: $0 bbo cpo040 cpo019"
   exit 0
 fi
 
@@ -59,62 +58,19 @@ fi
 echo "Area de trabalho"
 cd $DIRDATA/${1}
 
-
-echo "Arquivo de configuracao"
-echo "--------------------------------------------------------------------------------------------------------------"
-[ -s /bases/fiadmin2/config/$1.inc ] || echo "ERRO - Arquivo de configuracao nao encontrado /bases/fiadmin2/config/$1.inc"
-echo "--------------------------------------------------------------------------------------------------------------"
-
 echo
 echo "INICIO DOS AJUSTES ###########################################################################################"
 echo "--------------------------------------------------------------------------------------------------------------"
-echo "Descricao"
+echo "Nivel monografico"
 
-echo "004 Base de Dados - Verifica se e lilacs"
-echo "Codigo da base: $SIGLA_DB // Nome da proc: $DIRTAB/$PRC_CPO004"
+echo "019 Titulo em Ingles (Monografico) - Tirar os campos preenchido com - A traduzir - , por que, atrabalha no check de duplicado"
+$DIRISIS/mx $2 "proc='d919',if p(v19) then if (s(mpu,v19,mpl):'TRADUZI' or s(mpu,v19,mpl):'XX') and size(v19)<15 then else '<919 0>'v19'</919>' fi,fi" create=$3_1 -all now
 
-if [ -n "$SIGLA_DB" ]; then 
-	echo "SIM - 1"
-        if [ $SIGLA_DB = "1" ]; then
-               echo "SIM - 2"
-	        $DIRISIS/mx $2 "proc='<950>^b1</950>'" create=$3_1 -all now
-	else
-		echo "NÃO - 2"
-                if [ -n "$PRC_CPO004" ]; then
-                        $DIRISIS/mx $2 "proc=@$DIRTAB/$PRC_CPO004" create=$3_1 -all now
-	                echo "SIM - 3"
-		else
-                        $DIRISIS/mx $2 "proc=,if s(mpu,v4,mpl):'LILACS' then '<950>^b1</950>' fi" "proc='<950>^b$SIGLA_DB</950>'" create=$3_1 -all now
-			echo "NÃO - 3"
-		fi
-	fi
-else
-	echo "NÃO - 1"
-        $DIRISIS/mx $2 "proc=,if s(mpu,v4,mpl):'LILACS' then '<950>^b1</950>' fi" create=$3_1 -all now
-fi
+echo "Cria Master"
+$DIRISIS/mx $3_1 "proc='S'" create=$3 -all now
 
-echo "LILACS_indexed"
-$DIRISIS/mx $3_1 "proc=,if s(mpu,v4,mpl):'LILACS' then '<950>^i1</950>' fi" create=$3_2 -all now
-
-echo "Status"
-if [ "$STATUS" ]; then
-	$DIRISIS/mx $3_2 "proc='<950>^s$STATUS</950>'" create=$3_3 -all now
-else
-$DIRISIS/mx $3_2 "proc='<950>^s-3</950>'" create=$3_3 -all now
-fi
-
-$DIRISIS/mx $3_3 "proc='d904',if p(v4) then (if s(mpu,v4,mpl)='LILACS' then else '<904 0>'v4'</904>' fi),fi" create=$3_4 -all now
-
-$DIRISIS/mx $3_4 "proc='S'" create=$3 -all now
-
-echo "Gera Relatorios"
-$DIRISIS/mx $2 "tab=(v4/)" -all now >$DIROUTS/$1/cpo004_ori.txt
-$DIRISIS/mx $3 "tab=(v904/)" -all now >$DIROUTS/$1/cpo004_db.txt
-$DIRISIS/mx $3 "tab=(v950^b/)" -all now >$DIROUTS/$1/cpo004_idb.txt
-$DIRISIS/mx $3 "tab=(v950^s/)" -all now >$DIROUTS/$1/cpo004_st.txt
-
-$DIRISIS/mx $3 "proc='d*',if p(v904) or p(v950) then |<2 0>|v2|</2>|,(|<950>|v950|</950>|),(|<904>|v904|</904>|) fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000
-
+echo "Cria Iso"
+$DIRISIS/mx $3 "proc='d*',if p(v919) then |<2 0>|v2|</2>|,(|<919>|v913|</919>|) fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000
 echo
 echo "TERMINO DOS AJUSTES ##########################################################################################"
 

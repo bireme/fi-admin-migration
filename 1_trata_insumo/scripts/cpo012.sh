@@ -67,10 +67,20 @@ echo "012 Titulo (Analitico) - Idioma do titulo da analitica"
 $DIRISIS/mx $2 mfrl=8388608 fmtl=8388608 "proc=@$DIRTAB/v12_sub_i.prc" create=$3_1 -all now
 $DIRISIS/mx $3_1 "proc=(if p(v1200) then  '<12 0>',v1200,|^i|v940,'</12>' fi)" create=$3_2 -all now
 
-$DIRISIS/mx $3_2 "proc='d912',(|<912>|v12|</912>|)" create=$3_3 -all now
+$DIRISIS/mx $3_2 "proc='d912',(if v12^i='pt' or v12^i='es' or v12^i='en' or v12^i='fr' then |<912>|v12|</912>| fi)" create=$3_3 -all now
+
+$DIRISIS/mx $3_3 "proc='d912',(if s(mpu,v912^*,mpl)=v912^* then '<812>'v912'</812>' else '<912>'v912'</912>' fi)" create=$3_4 -all now
+
+$DIRISIS/id2i $TABS/gansmi.id create=gansmi
+
+$DIRISIS/mx $3_4 "gizmo=gansmi,812" create=$3_5 -all now
+
+$DIRISIS/mx $3_5 "proc='d812',(if p(v812) then '<912>'s(mpu,v812.1,mpl),v812*1'</912>' fi)" -all now create=$3_6
+
+$DIRISIS/mx $3_6  "proc='d912',(if v912:'.^' then '<912>'replace(v912,'.^','^')'</912>' else '<912>'v912'</912>' fi)" -all now create=$3_7
 
 echo "Cria Master"
-$DIRISIS/mx $3_3 "proc='S'" create=$3 -all now
+$DIRISIS/mx $3_7 "proc='S'" create=$3 -all now
 
 echo "Cria Iso"
 $DIRISIS/mx $3 "proc='d*',if p(v912) then |<2 0>|v2|</2>|,(|<912>|v912|</912>|) fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000

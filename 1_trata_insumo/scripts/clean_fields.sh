@@ -32,7 +32,7 @@ echo ""
 
 # Ajustando variaveis para processamento
 source /bases/fiadmin2/1_trata_insumo/tpl/settings.inc
-
+source /bases/fiadmin2/config/$1.inc
 # -------------------------------------------------------------------------- #
 
 echo "- Verificacoes iniciais"
@@ -56,15 +56,24 @@ else
    echo "Area de trabalho"
    cd $DIRDATA/${1}
 
+   echo "Criar o arquivo"   
+   $DIRISIS/mx $2 create=$2_w1 -all now
+
    for i in $(< $DIROUTS/$1/fields_proc_$1.txt)
    do
       echo "Campo $i"
-      $DIRISIS/mx $2 "proc=if p(v$i) then 'd$i','<61 0>Campo $i: 'v$i'</61>' fi" copy=$2 -all now 
+      echo "$DIRISIS/mx $2_w1 proc=if p(v$i) then if '$i'='993' or '$i'='996' then 'd775d$i','<775 0>'v775,if '$i'='996' then '$SOURCE'replace(v$i,'^','_') else if v$i:'lxp' then replace(v$i,'^','_') fi,fi'</775>'  else 'd$i','<61 0>Campo $i: 'v$i'</61>' fi,fi copy=$2_w1 -all now"
+      $DIRISIS/mx $2_w1 "proc=if p(v$i) then if '$i'='993' or '$i'='996' then 'd775d$i','<775 0>'v775,if '$i'='996' then '$SOURCE'replace(v$i,'^','_') else if v$i:'lxp' then replace(v$i,'^','_') fi,fi'</775>'  else 'd$i','<61 0>Campo $i: 'v$i'</61>' fi,fi" copy=$2_w1 -all now 
    done
    echo "Limpa"
-   $DIRISIS/mxcp $2 create=clean_$2 clean 
+   $DIRISIS/mxcp $2_w1 create=clean_$2 clean 
    echo "Ordena" 
-   $DIRISIS/mx clean_$2 "proc='S'" create=cpo000 -all now
+   $DIRISIS/mx clean_$2 "proc='S'" create=wkr_cl -all now
+   echo "Traz gizmo"
+   [ -f $DIRTAB/ghtmlnumans.mst ] || $DIRISIS/id2i $TABS/ghtmlnumans.id create=$DIRTAB/ghtmlnumans
+   echo "Gizmo de hml para o SciELO"
+   $DIRISIS/mx wkr_cl "gizmo=$DIRTAB/ghtmlnumans" create=cpo000 -all now
+   
 fi
 
 

@@ -55,6 +55,8 @@ else
   echo "  OK - $DIRDATA/${1}/$2.mst"
 fi
 
+ANO="`date '+%Y'`"
+
 echo "Area de trabalho"
 cd $DIRDATA/${1}
 
@@ -63,11 +65,20 @@ echo "INICIO DOS AJUSTES #######################################################
 echo "--------------------------------------------------------------------------------------------------------------"
 echo "Descricao"
 
-echo "065 Data de Publicacao Normalizada - Tamanho do campo e ano inferior a 1985 para registros LILACS"
-$DIRISIS/mx $2 "pft=if s(mpu,v950,mpl):'LILACS' then if a(v65) then v2'|65_DP|AUS'/ else if val(v65.4)<1985 then v2'|65_DP|'v65/ fi,if size(v65)<9 then v2'|65_DP|'v65/ fi,fi,fi" lw=0 -all now >$DIROUTS/$1/Rel_$3.txt
+echo "065 Data de Publicacao Normalizada - Tamanho do campo e ano inferior a 1985 para registros LILACS ANO - $ANO"
+#$DIRISIS/mx $2 "pft=if v950^b:'1' then if a(v65) then v2'|ID|'v776^i'|65_DP|AUS'/ else if val(v65.4)<1985 or val(v65.4)>$ANO then v2'|ID|'v776^i'|65_DP|'v65/ fi,if size(v65)<9 then v2'|ID|'v776^i'|65_DP|'v65/ fi,fi,fi" lw=0 -all now >$DIROUTS/$1/Rel_$3.txt
+$DIRISIS/mx $2 "pft=if v950^b:'1' then if a(v65) then else if val(v65.4)<1985 or val(v65.4)>$ANO then v2'|ID|'v776^i'|65_DP|'v65.4/ fi,fi,fi" lw=0 -all now >$DIROUTS/$1/Rel_$3.txt
 
-$DIRISIS/mx $2 "proc=if s(mpu,v950,mpl):'LILACS' then if val(v65.4)<1985 then 'd65','<65 0>19850000</65>' fi,fi" create=$3_1 -all now
+$DIRISIS/mx $2 "pft=if v950^b:'1' then if a(v65) then else if size(v65)<9 then v2'|ID|'v776^i'|65_DP|'v65/ fi,fi,fi" lw=0 -all now >$DIROUTS/$1/Rel_Tamanho_$3.txt
 
+echo "Lista de nao de publicacao Normalizada"
+$DIRISIS/mx $2 "tab=if v950^b:'1' then if a(v65) then 'AUS'/ else v65.4/ fi,fi" lw=0 -all now >$DIROUTS/$1/Lista_$3.txt
+
+echo "Relatorio de data ausente"
+$DIRISIS/mx $2 "pft=if v950^b:'1' then if a(v65) then v2/ fi,fi" lw=0 -all now >$DIROUTS/$1/SemData_$3.txt
+
+echo "Fixa a Data em 1985"
+$DIRISIS/mx $2 "proc=if v950^b:'1' then if val(v65.4)<1985 then 'd65','<65 0>19850000</65>' fi,fi" create=$3_1 -all now
 
 echo "Cria master e ISO"
 $DIRISIS/mx $3_1 "proc='S'" create=$3 -all now tell=5000

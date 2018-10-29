@@ -98,7 +98,7 @@ echo "cpo025"
 $DIRISIS/mx lil_012 "proc='d25d925',if p(v925) then (|<25 0>|v925|</25>|) else if p(v25) then |<25 0>|v25|</25>| fi,fi" create=lil_013 -all now
 
 echo "cpo030"
-$DIRISIS/mx lil_013 "proc='d30d930',if p(v930) then (|<30 0>|v930|</30>|) else if p(v30) then |<30 0>|v30|</30>| fi,fi" create=lil_014 -all now
+$DIRISIS/mx lil_013 "proc='d30d930d945',if p(v930) then (|<30 0>|v930|</30>|) else if p(v30) then |<30 0>|v30|</30>| fi,fi" create=lil_014 -all now
 
 echo "cpo035"
 $DIRISIS/mx lil_014 "proc='d35d935',if p(v935) then (|<35 0>|v935|</35>|) else if p(v35) then |<35 0>|v35|</35>| fi,fi" create=lil_015 -all now
@@ -119,7 +119,7 @@ echo "cpo067"
 $DIRISIS/mx lil_019 "proc='d67d967',if p(v967) then (|<67 0>|v967|</67>|) else if p(v67) then |<67 0>|v67|</67>| fi,fi" create=lil_020 -all now
 
 echo "cpo071"
-$DIRISIS/mx lil_020 "proc='d17d971',if p(v971) then (|<71 0>|v971|</71>|) fi" create=lil_021 -all now
+$DIRISIS/mx lil_020 "proc='d71d971',if p(v971) then (|<71 0>|v971|</71>|) fi" create=lil_021 -all now
 
 echo "cpo076"
 $DIRISIS/mx lil_021 "proc='d76d976',if p(v976) then (|<76 0>|v976|</76>|) fi" create=lil_022 -all now
@@ -163,14 +163,20 @@ $DIRISIS/mx lil_033 "proc='d950',if p(v950) then (|<950 0>|v950|</950>|) fi" cre
 echo "cpo500"
 $DIRISIS/mx lil_034 "proc='d995',if p(v995) then (|<500 0>|v950|</500>|) fi" create=lil_035 -all now
 
+echo "cpo505"
+$DIRISIS/mx lil_035 "proc='d955',if p(v955) then (|<505 0>|v950|</505>|) fi" create=lil_036 -all now
+
 echo "cpo013"
-$DIRISIS/mx lil_035 "proc='d13d913',if p(v913) then (|<13 0>|v913|</13>|) fi" create=lil_036 -all now
+$DIRISIS/mx lil_036 "proc='d13d913',if p(v913) then (|<13 0>|v913|</13>|) fi" create=lil_037 -all now
 
 echo "cpo019"
-$DIRISIS/mx lil_036 "proc='d19d919',if p(v919) then (|<19 0>|v919|</19>|) fi" create=lil_037 -all now
+$DIRISIS/mx lil_037 "proc='d19d919',if p(v919) then (|<19 0>|v919|</19>|) fi" create=lil_038 -all now
+
+echo "cpo085"
+$DIRISIS/mx lil_038 "proc='d85d985',if p(v985) then (|<85 0>|v985|</85>|) fi" create=lil_039 -all now
 
 echo "Final"
-$DIRISIS/mx lil_037 "proc='S'" iso=lil_OK.iso -all now
+$DIRISIS/mx lil_039 "proc='S'" iso=lil_OK.iso -all now
 
 # ---------------------------------------------------------------------------#
 

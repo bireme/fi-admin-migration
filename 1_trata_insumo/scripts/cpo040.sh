@@ -80,11 +80,15 @@ $DIRISIS/mxcp $3_1 create=$3_2 repeat=/,940
 
 echo "Gizmo"
 $DIRISIS/mx $3_2 "gizmo=gizIdioma,940" "gizmo=Idioma_coleciona,940" create=$3_3 -all now 
+
 echo "Relatorio"
 $DIRISIS/mx $3_3 "pft=if a(v940) then v2'|CPO040|sem'/ fi" -all now >$DIROUTS/$1/Rel_$3.txt
 
+echo "Coloca o idioma do titulo no idioma do texto somente da primeira ocorrencia do titulo"
+$DIRISIS/mx $3_3 "proc=if a(v40) then if p(v12^i) then '<940>'v12^i[1]'</940>' else if p(v18^i) then '<940>'v18^i[1]'</940>' else if p(v8^i) then '<940>'v8^i[1]'</940>' fi,fi,fi,fi" -all now create=$3_4
+
 echo "Cria Master e arquivo ISO"
-$DIRISIS/mx $3_3 "proc='S'" create=$3 -all now
+$DIRISIS/mx $3_4 "proc='S'" create=$3 -all now
 
 $DIRISIS/mx $3 "proc='d*',if p(v940) then |<2 0>|v2|</2>|,(|<940>|v940|</940>|) fi" iso=$DIRWORK/$1/$3.iso -all now tell=10000
 echo
